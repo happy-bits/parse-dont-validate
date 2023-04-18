@@ -5,12 +5,6 @@ internal class Good1
 
     public static void Run()
     {
-        /*
-         Fördel: GetFirstElement lyckas alltid, pga har rätt typ direkt
-         Fördel: Om det smäller så smäller det tidigt, redan vid "list", vi behöver inte ens anropa GetFirstElement
-         Nackdel: ToList i fall där det kanske inte behövs, prestandaproblem
-         */
-        
         NonEmptyList list = GetListFromUser();
 
         string first = GetFirstElement(list);
@@ -26,7 +20,7 @@ internal class Good1
         {
 
             Console.Write("Enter a comma separated list: ");
-            string[] array = Console.ReadLine()!.Split(',', StringSplitOptions.RemoveEmptyEntries);
+            string[] array = Console.ReadLine()!.Trim().Split(',', StringSplitOptions.RemoveEmptyEntries);
 
             if (array.Length > 0)
                 return new NonEmptyList(array);
@@ -36,12 +30,11 @@ internal class Good1
 
     private static string GetFirstElement(NonEmptyList list)
     {
-        // Nackdel: punkt Value
+        // Good: GetFirstElement will always succeed since we limit the parmeter
+        // Small problem: we need to write ".Value"
 
         return list.Value[0];
     }
-
-    // Nackdel: ganska mycket kod, går det att förenkla?
 
     class NonEmptyList
     {
@@ -49,6 +42,7 @@ internal class Good1
 
         public NonEmptyList(IEnumerable<string> items) 
         { 
+            // Problem: We might call ToList even if it's not necessary (performance problem)
             var list  = items.ToList();  
 
             if (!list.Any())

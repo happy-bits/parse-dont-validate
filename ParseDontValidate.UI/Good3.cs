@@ -19,7 +19,7 @@ internal class Good3
         {
 
             Console.Write("Enter a comma separated list: ");
-            string[] array = Console.ReadLine()!.Split(',', StringSplitOptions.RemoveEmptyEntries);
+            string[] array = Console.ReadLine()!.Trim().Split(',', StringSplitOptions.RemoveEmptyEntries);
 
             if (array.Length > 0)
                 return new NonEmptyList(array);
@@ -32,7 +32,7 @@ internal class Good3
         return list.Value[0];
     }
 
-    // Lite tajtare
+    // The same as Good2 but with shorter syntax
 
     public class NonEmptyList
     {

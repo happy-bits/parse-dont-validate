@@ -5,11 +5,6 @@ internal class Bad1
 
     public static void Run()
     {
-        /*
-         Nackdel: GetFirstElement kan bli null
-         Nackdel: Behöver hantera null
-        */
-
         string[] array = GetListFromUser();
 
         string? first = GetFirstElement(array);
@@ -23,7 +18,7 @@ internal class Bad1
         {
 
             Console.Write("Enter a comma separated list: ");
-            string[] array = Console.ReadLine()!.Split(',', StringSplitOptions.RemoveEmptyEntries);
+            string[] array = Console.ReadLine()!.Trim().Split(',', StringSplitOptions.RemoveEmptyEntries);
 
             if (array.Length > 0)
                 return array;
@@ -33,7 +28,7 @@ internal class Bad1
 
     private static string? GetFirstElement(string[] array)
     {
-        // Nackdel: funktionen behöver hantera felaktiga inparametrar
+        // Problem: This function has to handle problematic input (if the array is empty)
 
         if (array.Length == 0)
             return null;

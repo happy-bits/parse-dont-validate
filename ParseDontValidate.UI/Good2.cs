@@ -5,7 +5,7 @@ internal class Good2
 
     public static void Run()
     {
-        // Samma som Good1 men med "generics"
+        // The same solution as Good1 but with "generics"
 
         NonEmptyList<string> list = GetListFromUser();
 
@@ -22,7 +22,7 @@ internal class Good2
         {
 
             Console.Write("Enter a comma separated list: ");
-            string[] array = Console.ReadLine()!.Split(',', StringSplitOptions.RemoveEmptyEntries);
+            string[] array = Console.ReadLine()!.Trim().Split(',', StringSplitOptions.RemoveEmptyEntries);
 
             if (array.Length > 0)
                 return new NonEmptyList<string>(array);
